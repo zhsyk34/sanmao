@@ -1,0 +1,30 @@
+#--------------server
+server:
+  port: 8080
+  address: 127.0.0.1
+  connectionTimeout: 30
+  contextPath: /
+
+spring:
+#  profiles:
+#    active: test
+  aop:
+    proxy-target-class: true
+  thymeleaf:
+    mode: LEGACYHTML5
+    encoding: UTF-8
+#    prefix: /templates/
+#    suffix: .html
+    cache: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.1.105:3306/hu?useSSL=true
+    username: root
+    password: root
+  mvc:
+    static-path-pattern: /resources/**
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+
