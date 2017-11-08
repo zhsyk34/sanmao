@@ -29,19 +29,29 @@ repositories {
     mavenCentral()
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
 ext {
+    jdk = '1.8'
+
+    junit = '4.12'
+
+    slf = '1.7.25'
+    logback = '1.2.3'
+
     lombok = '1.16.18'
-    springboot = '1.5.8.RELEASE'
+    jackson = '2.9.1'
+
     mysql = '6.0.6'
+
+    springboot = '1.5.8.RELEASE'
 }
+
+sourceCompatibility = $ { jdk }
+targetCompatibility = $ { jdk }
 
 dependencies {
     compile("org.projectlombok:lombok:$lombok")
-    compile("org.slf4j:slf4j-api:1.7.25")
-    compile("ch.qos.logback:logback-classic:1.2.3")
+    compile("org.slf4j:slf4j-api:$slf")
+    compile("ch.qos.logback:logback-classic:$logback")
 
     compile("org.springframework.boot:spring-boot-starter-web") {
         exclude module: "spring-boot-starter-tomcat"
@@ -58,7 +68,7 @@ dependencies {
 
     compile("org.springframework.boot:spring-boot-starter-actuator")
 
-    testCompile("junit:junit")
+    testCompile("junit:junit:$junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 
     // https://mvnrepository.com/artifact/org.apache.lucene/lucene-core
