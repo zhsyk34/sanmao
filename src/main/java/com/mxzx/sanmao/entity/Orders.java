@@ -2,17 +2,20 @@ package com.mxzx.sanmao.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Data
+//@EqualsAndHashCode(exclude = "details")
 public class Orders {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column(unique = true, nullable = false)
+    private String no;//编号
 
     @ManyToOne
     private Supplier supplier;//供应商
@@ -25,4 +28,10 @@ public class Orders {
 
     private int paid;//已付
     private String recorder;//开单员
+
+    //fetch=eager直接抓取,或者需要在同一事务中进行
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "orders")
+    private Set<Detail> details;
+
+    private LocalDateTime happen;//时间
 }

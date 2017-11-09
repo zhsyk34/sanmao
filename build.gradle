@@ -41,12 +41,14 @@ ext {
     jackson = '2.9.1'
 
     mysql = '6.0.6'
+    hibernate = '5.2.12.Final'
 
     springboot = '1.5.8.RELEASE'
 }
 
-sourceCompatibility = $ { jdk }
-targetCompatibility = $ { jdk }
+//TODO
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 dependencies {
     compile("org.projectlombok:lombok:$lombok")
@@ -63,10 +65,14 @@ dependencies {
 
     compile("mysql:mysql-connector-java:$mysql")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.hibernate:hibernate-java8:$hibernate")//for java8
+
 
     compile("org.springframework.boot:spring-boot-starter-aop")
 
     compile("org.springframework.boot:spring-boot-starter-actuator")
+
+    compile("org.springframework.boot:spring-boot-devtools")//热部署
 
     testCompile("junit:junit:$junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")

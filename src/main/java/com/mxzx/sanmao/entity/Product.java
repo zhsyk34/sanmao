@@ -2,9 +2,7 @@ package com.mxzx.sanmao.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 //产品
 @Entity
@@ -13,9 +11,14 @@ public class Product {
     @Id
     @GeneratedValue
     private Long id;
-    private String no;//编号
-    private String name;//名称
 
+    @Column(unique = true, nullable = false)
+    private String no;//编号
+
+    @Column(unique = true, nullable = false)
+    private String name;//名称
+    @Column(nullable = false)
     private String unit;//单位
+    @Column(nullable = false)
     private int price;//单价
 }

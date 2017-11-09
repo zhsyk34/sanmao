@@ -1,6 +1,7 @@
 package com.mxzx.sanmao.exception;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor(staticName = "of")
 @Getter

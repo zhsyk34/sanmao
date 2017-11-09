@@ -1,8 +1,8 @@
 package com.mxzx.sanmao.exception;
 
-import com.mxzx.sanmao.controller.*;
-import lombok.extern.slf4j.*;
-import org.springframework.http.*;
+import com.mxzx.sanmao.dto.Result;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @ControllerAdvice
@@ -12,13 +12,14 @@ public class GlobalControllerExceptionHandler {
     @ExceptionHandler(CustomException.class)
     @ResponseBody
     public Result<String> handWebException(CustomException e) {
-        return Result.of(e.code(), e.msg(), null);
+        logger.error(e.getMessage(), e);
+        return Result.of(e.getCode(), e.getMessage(), null);
     }
 
     @ExceptionHandler(RuntimeException.class)
     @ResponseBody
     public Result<String> handRuntimeException(Exception e) {
-        e.printStackTrace();
+        logger.error(e.getMessage(), e);
         return Result.from(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
     }
 

@@ -9,7 +9,5 @@ import java.util.List;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-    Customer findByName(String name);
-
-    List<Customer> findByNameLike(String name);
+    List<Customer> findByNameContains(String name);
 }
