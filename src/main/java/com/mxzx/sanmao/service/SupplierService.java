@@ -4,9 +4,9 @@ import com.mxzx.sanmao.entity.Supplier;
 import com.mxzx.sanmao.repository.SupplierRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -18,7 +18,7 @@ public class SupplierService {
         return supplierRepository.save(supplier).getId();
     }
 
-    public List<Supplier> list(String name) {
-        return supplierRepository.findByNameContains(name);
+    public Page<Supplier> list(String name, Pageable pageable) {
+        return supplierRepository.findByNameContains(name, pageable);
     }
 }

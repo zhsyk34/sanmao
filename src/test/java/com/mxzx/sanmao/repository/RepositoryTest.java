@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.*;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
@@ -111,7 +113,14 @@ public class RepositoryTest {
 
     @Test
     public void findByNameLike() throws Exception {
-        customerRepository.findByNameContains("Hu").forEach(System.out::println);
+        Pageable pageable = new PageRequest(0, 3, Direction.DESC, "id");
+        Page<Customer> page = customerRepository.findByNameContains("Hu", pageable);
+        System.out.println(page.getTotalPages());
+        page.forEach(System.err::println);
+        pageable = new PageRequest(1, 3, Direction.DESC, "id");
+        customerRepository.findByNameContains("Hu", pageable).forEach(System.err::println);
+
+        System.out.println(mapper.writeValueAsString(page));
     }
 
     @Test

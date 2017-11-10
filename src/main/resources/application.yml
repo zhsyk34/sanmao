@@ -12,25 +12,18 @@ spring:
     proxy-target-class: true
   thymeleaf:
     mode: LEGACYHTML5
-    encoding: UTF-8
-#    prefix: /templates/
-#    suffix: .html
     cache: false
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://192.168.1.105:3306/hu?useSSL=true
-    url: jdbc:mysql://localhost:3306/hu?useSSL=true&serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/hu?useSSL=true&serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: root
-  mvc:
-    static-path-pattern: /resources/**
   jpa:
     hibernate:
       ddl-auto: update
-
-#  jackson:
-#    mapper:
-#    serialization:
+  http:
+    encoding:
+      charset: UTF-8
 
 
 

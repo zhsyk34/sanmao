@@ -1,0 +1,19 @@
+.modal-body > div {
+    margin-bottom: 15px;
+}
+
+.table td, .table th {
+    text-align: center;
+}
+
+.table td > button:not(:first-child) {
+    margin-left: 12px;
+}
+
+.modal-title {
+    font-weight: 600;
+}
+
+.modal-body .input-group:not(:last-child) {
+    margin-bottom: 12px;
+}

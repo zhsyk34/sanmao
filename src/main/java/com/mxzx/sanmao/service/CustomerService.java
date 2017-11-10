@@ -3,13 +3,13 @@ package com.mxzx.sanmao.service;
 import com.mxzx.sanmao.entity.Customer;
 import com.mxzx.sanmao.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
+//只有一个构造器可以不用显示注入?
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor/*(onConstructor = @__(@Autowired))*/
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
@@ -18,7 +18,7 @@ public class CustomerService {
         return customerRepository.save(customer).getId();
     }
 
-    public List<Customer> list(String name) {
-        return customerRepository.findByNameContains(name);
+    public Page<Customer> list(String name, Pageable pageable) {
+        return customerRepository.findByNameContains(name, pageable);
     }
 }

@@ -3,16 +3,15 @@ package com.mxzx.sanmao;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+//TODO:page class active to bind for vue.js
 @SpringBootApplication
 public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
-
-//    @Bean
+//    //    @Bean
 //    public EmbeddedServletContainerCustomizer containerCustomizer() {
-//
 //        return (container -> {
 //            ErrorPage error401Page = new ErrorPage(HttpStatus.UNAUTHORIZED, "/401.html");
 //            ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/404.html");

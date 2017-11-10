@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dialog</title>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<div id="app">
+    <div is="modal" id="modal">
+        <h4 class="modal-title" slot="modal-title" v-text="title"></h4>
+
+        <form>
+            <div class="input-group">
+                <span class="input-group-addon">name</span>
+                <input type="text" class="form-control" placeholder="name" v-model="data.name">
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon">age</span>
+                <input type="text" class="form-control" placeholder="age" v-model="data.age">
+                <span class="input-group-addon">岁</span>
+            </div>
+        </form>
+
+        <div class="modal-footer" slot="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary">保存</button>
+        </div>
+    </div>
+
+    <button class="btn btn-success" @click="open">编辑</button>
+</div>
+<script src="lib/jquery.js"></script>
+<script src="lib/vue.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+<script src="lib/zsy/modal.js"></script>
+
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            title: '编辑',
+            data: {name: 'csl', age: 100}
+        },
+        methods: {
+            open: function () {
+//                this.data = {};
+                $('#modal').modal('show');
+            }
+        }
+    });
+
+    //    const bus = new Vue();
+    //    // 触发组件 A 中的事件
+    //    bus.$emit('change-data');
+    //    // 在组件 B 创建的钩子中监听事件
+    //    bus.$on('change-data', function () {
+    //        console.log('change data.');
+    //        data.title = 'Save';
+    //        data.data = {};
+    //    });
+</script>
+
+</body>
+</html>
