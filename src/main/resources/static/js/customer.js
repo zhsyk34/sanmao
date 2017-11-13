@@ -1,6 +1,7 @@
 new Vue({
     el: '.container',
     data: {
+        url: "customers",
         number: 0,
         total: 0,
         titles: ['no', 'company', 'name', 'address', 'phone'],
@@ -23,17 +24,25 @@ new Vue({
         show: function () {
             $('.modal').modal('show');
         },
+        hide: function () {
+            $('.modal').modal('hide');
+        },
         change: function (index) {
             console.log('change page index');
             this.list(index);
         },
         list: function (index) {
-            console.log(index);
-            axios.get("customers").then(resp => {
+            console.log("list:" + index);
+
+            const param = new FormData();
+
+            param.append('page', index);
+            param.append('name', 'H');
+
+            axios.get(this.url, param).then(resp => {
                 const r = resp.data;
                 if (r.code === 200) {
                     this.rows = r.data.content;
-                    console.log(r.data.content);
                     this.number = r.data.number;
                     this.total = r.data.totalPages;
                 } else {
@@ -55,7 +64,20 @@ new Vue({
             console.log('delete', row.id);
         },
         save: function () {
+            console.log("save");
+            console.log(this.row);
 
+            if (this.row.id) {
+                axios.put(this.url, this.row).then(resp => {
+                    this.hide();
+                    this.list(1);
+                });
+            } else {
+                axios.post(this.url, this.row).then(resp => {
+                    this.hide();
+                    this.list(1);
+                });
+            }
         }
     },
     computed: {

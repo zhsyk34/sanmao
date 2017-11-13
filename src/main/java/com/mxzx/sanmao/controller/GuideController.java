@@ -27,7 +27,8 @@ public class GuideController implements ErrorController {
 
     @RequestMapping(ERROR)
     public String error() {
-        logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>跳转到错误页面");
+        //TODO
+//        logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>跳转到错误页面");
         return ERROR;
     }
 

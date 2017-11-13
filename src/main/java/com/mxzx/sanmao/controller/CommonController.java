@@ -1,12 +1,18 @@
 package com.mxzx.sanmao.controller;
 
 import com.mxzx.sanmao.dto.Result;
-import com.mxzx.sanmao.service.*;
+import com.mxzx.sanmao.service.CustomerService;
+import com.mxzx.sanmao.service.OrdersService;
+import com.mxzx.sanmao.service.ProductService;
+import com.mxzx.sanmao.service.SupplierService;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 abstract class CommonController<T, K> {
     @Setter(onMethod = @__({@Autowired}))
