@@ -6,7 +6,8 @@
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <!--<pattern>%d{HH:mm:ss} [%thread] %-5level %logger{36} -%msg%n</pattern>-->
-            <pattern>%-4relative [%thread] %-5level %logger{100} - %msg%n</pattern>
+            <!--<pattern>%-4relative [%thread] %-5level %logger{100} - %msg%n</pattern>-->
+            <pattern>%-5level %logger{100} - %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -25,9 +26,9 @@
         <appender-ref ref="console"/>
     </logger>
 
-    <logger name="org.hibernate.SQL" level="debug"/>
+    <!--<logger name="org.hibernate.SQL" level="debug"/>-->
 
-    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace"/>
+    <!--<logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace"/>-->
 
     <root level="info">
         <appender-ref ref="console"/>

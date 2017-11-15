@@ -34,12 +34,8 @@ new Vue({
         list: function (index) {
             console.log("list:" + index);
 
-            const param = new FormData();
-
-            param.append('page', index);
-            param.append('name', 'H');
-
-            axios.get(this.url, param).then(resp => {
+            axios.get(this.url, {params: {page: index - 1}}).then(resp => {
+                console.log(resp);
                 const r = resp.data;
                 if (r.code === 200) {
                     this.rows = r.data.content;

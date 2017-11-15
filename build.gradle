@@ -46,7 +46,6 @@ ext {
     springboot = '1.5.8.RELEASE'
 }
 
-//TODO
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 

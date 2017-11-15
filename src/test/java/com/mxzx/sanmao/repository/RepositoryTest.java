@@ -1,5 +1,6 @@
 package com.mxzx.sanmao.repository;
 
+import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mxzx.sanmao.Application;
 import com.mxzx.sanmao.entity.*;
@@ -31,6 +32,7 @@ public class RepositoryTest {
     private OrdersRepository ordersRepository;
     @Autowired
     private DetailRepository detailRepository;
+
     @Autowired
     private ObjectMapper mapper;
 
@@ -121,6 +123,9 @@ public class RepositoryTest {
         customerRepository.findByNameContains("Hu", pageable).forEach(System.err::println);
 
         System.out.println(mapper.writeValueAsString(page));
+
+        JsonGenerator generator = mapper.getFactory().createGenerator(System.err);
+        generator.writeObject(page);
     }
 
     @Test
