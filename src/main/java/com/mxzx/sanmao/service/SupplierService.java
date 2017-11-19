@@ -14,8 +14,8 @@ public class SupplierService {
 
     private final SupplierRepository supplierRepository;
 
-    public Long save(Supplier supplier) {
-        return supplierRepository.save(supplier).getId();
+    public Supplier save(Supplier supplier) {
+        return supplierRepository.save(supplier);
     }
 
     public Page<Supplier> list(String name, Pageable pageable) {

@@ -15,7 +15,7 @@ Vue.component('grid', {
             <td v-for="title of titles" v-text="row[title]"></td>
             <td>
                 <button class="btn btn-sm btn-primary" @click="update(row)">编辑</button>
-                <button class="btn btn-sm btn-danger" @click="remove(row)">删除</button>
+                <!--<button class="btn btn-sm btn-danger" @click="remove(row)">删除</button>-->
             </td>
         </tr>
         </tbody>

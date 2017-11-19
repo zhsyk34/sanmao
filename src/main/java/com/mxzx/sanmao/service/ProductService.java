@@ -14,8 +14,8 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    public Long save(Product product) {
-        return productRepository.save(product).getId();
+    public Product save(Product product) {
+        return productRepository.save(product);
     }
 
     public Page<Product> list(String name, Pageable pageable) {

@@ -1,0 +1,17 @@
+#customer .row {
+    margin: 15px 0;
+}
+
+input.form-control[readonly] {
+    background: #fff;
+}
+
+.table > thead > tr > th, .table > tbody > tr > td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table > tbody > tr {
+    padding: 5px;
+    height: 50px;
+}

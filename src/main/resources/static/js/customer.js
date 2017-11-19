@@ -32,7 +32,6 @@ new Vue({
         },
         list: function (index) {
             axios.get(this.url, {params: {page: index - 1}}).then(resp => {
-                console.log(resp);
                 const r = resp.data;
                 if (r.code === 200) {
                     const data = r.data;
@@ -57,7 +56,6 @@ new Vue({
             this.show();
         },
         remove: function (row) {
-            console.log('delete', row.id);
         },
         save: function () {
             if (this.row.id) {

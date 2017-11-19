@@ -14,8 +14,8 @@ public class CustomerService {
 
     private final CustomerRepository customerRepository;
 
-    public Long save(Customer customer) {
-        return customerRepository.save(customer).getId();
+    public Customer save(Customer customer) {
+        return customerRepository.save(customer);
     }
 
     public Page<Customer> list(String name, Pageable pageable) {
