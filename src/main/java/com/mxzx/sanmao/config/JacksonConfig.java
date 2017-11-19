@@ -3,11 +3,11 @@ package com.mxzx.sanmao.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
-import org.springframework.context.annotation.*;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
@@ -18,12 +18,12 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
 
-@Configuration
-@Slf4j
+//@Configuration
+//@Slf4j
 public class JacksonConfig {
 
-    @Bean
-    public Module module(PageSerializer pageSerializer) {
+    //    @Bean
+    public SimpleModule module(PageSerializer pageSerializer) {
         return new SimpleModule().addSerializer(pageSerializer);
     }
 
@@ -48,28 +48,24 @@ public class JacksonConfig {
     }
 
     //    @Bean
-    public Jackson2ObjectMapperBuilder objectMapperBuilder(List<Module> modules) {
+    public Jackson2ObjectMapperBuilder objectMapperBuilder() {
         Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder() {
             @Override
             public void configure(ObjectMapper objectMapper) {
-                super.configure(objectMapper);
-
-                logger.info(">>>>>>>>>>>>>>>modules size:{}", modules.size());
-
-                for (Module module : modules) {
-                    System.err.println(module.getClass());
-
-                    if (module instanceof SimpleModule) {
-                        objectMapper.registerModule(module);
-                    }
-                }
-//                modules.forEach(objectMapper::registerModule);
+                objectMapper.registerModule(new SimpleModule().addSerializer(new PageSerializer()));
             }
         };
 
         builder.serializationInclusion(JsonInclude.Include.NON_NULL);
 
         return builder;
+    }
+
+    //    @Bean
+    public ObjectMapper jacksonObjectMapper(Jackson2ObjectMapperBuilder builder, SimpleModule module) {
+        ObjectMapper mapper = builder.build();
+        mapper.registerModule(module);
+        return mapper;
     }
 
     //    @Bean
@@ -86,8 +82,8 @@ public class JacksonConfig {
         };
     }
 
-    @Bean
-    @Primary
+    //    @Bean
+//    @Primary
     public MappingJackson2HttpMessageConverter converter() {
         return new MappingJackson2HttpMessageConverter() {
             @Override

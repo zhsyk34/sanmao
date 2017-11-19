@@ -1,9 +1,0 @@
-{
-  "name": "csl",
-  "child": [
-    "first",
-    "second",
-    "last"
-  ],
-  "money": 8219
-}

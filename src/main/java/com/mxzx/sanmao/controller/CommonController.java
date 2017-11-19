@@ -27,6 +27,7 @@ abstract class CommonController<T, K> {
     @PostMapping
     protected abstract Result<Boolean> create(T t);
 
+    //@PageableDefault
     @GetMapping
     protected abstract Result<Page<T>> retrieve(T t, Pageable pageable);
 

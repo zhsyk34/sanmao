@@ -783,7 +783,6 @@
 
     /*  */
 
-
     var uid = 0;
 
     /**
@@ -2754,7 +2753,6 @@
     }
 
     /*  */
-
 
     var MAX_UPDATE_COUNT = 100;
 
@@ -5041,7 +5039,6 @@
         node.setAttribute(key, val);
     }
 
-
     var nodeOps = Object.freeze({
         createElement: createElement$1,
         createElementNS: createElementNS,
@@ -6709,7 +6706,6 @@
     }
 
 // check platforms/web/util/attrs.js acceptValue
-
 
     function shouldUpdateValue(elm,
                                vnode,
@@ -9534,7 +9530,6 @@
         this.onceId = 0;
         this.staticRenderFns = [];
     };
-
 
     function generate(ast,
                       options) {

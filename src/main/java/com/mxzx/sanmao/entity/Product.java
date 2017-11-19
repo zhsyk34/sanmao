@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 
 //产品
 @Entity
@@ -23,5 +24,5 @@ public class Product {
     @Column(nullable = false)
     private String unit;//单位
     @Column(nullable = false)
-    private int price;//单价
+    private BigDecimal price;//单价
 }

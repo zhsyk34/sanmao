@@ -5,8 +5,6 @@ import com.mxzx.sanmao.entity.Customer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +24,7 @@ public class CustomerController extends CommonController<Customer, Long> {
     }
 
     @Override
-    protected Result<Page<Customer>> retrieve(Customer customer, @PageableDefault(size = 3, sort = "id", direction = Direction.DESC) Pageable pageable) {
+    protected Result<Page<Customer>> retrieve(Customer customer, Pageable pageable) {
         String name = Optional.ofNullable(customer.getName()).orElse("");
         logger.debug("retrieve by name: {} and page: {}", name, pageable);
         Page<Customer> page = customerService.list(name, pageable);
@@ -37,11 +35,11 @@ public class CustomerController extends CommonController<Customer, Long> {
     protected Result<Boolean> update(@RequestBody Customer customer) {
         logger.debug("update {}", customer);
         customerService.save(customer);
-        return Result.error();
+        return Result.success();
     }
 
     @Override
     protected Result<Boolean> delete(Long id) {
-        return Result.error();
+        return Result.success();
     }
 }

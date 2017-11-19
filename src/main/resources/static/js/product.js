@@ -1,15 +1,14 @@
 new Vue({
     el: '.container',
     data: {
-        url: "customers",
+        url: "products",
         number: 0,
         total: 0,
-        titles: ['no', 'company', 'name', 'address', 'phone'],
+        titles: ['no', 'name', 'unit', 'price'],
         rows: [],
         row: {},
         title: ''
     },
-    components: {},
     filters: {
         format: function (value) {
             return value.toFixed(2)
@@ -32,7 +31,6 @@ new Vue({
         },
         list: function (index) {
             axios.get(this.url, {params: {page: index - 1}}).then(resp => {
-                console.log(resp);
                 const r = resp.data;
                 if (r.code === 200) {
                     const data = r.data;
@@ -57,7 +55,6 @@ new Vue({
             this.show();
         },
         remove: function (row) {
-            console.log('delete', row.id);
         },
         save: function () {
             if (this.row.id) {

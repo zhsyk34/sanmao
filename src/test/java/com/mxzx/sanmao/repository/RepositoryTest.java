@@ -9,10 +9,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +71,7 @@ public class RepositoryTest {
                     .setNo("00" + i)
                     .setName("p" + i)
                     .setUnit("平方米")
-                    .setPrice(100 + i);
+                    .setPrice(new BigDecimal(100 + i));
             list.add(product);
         }
         productRepository.save(list);

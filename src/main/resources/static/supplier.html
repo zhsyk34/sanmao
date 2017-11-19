@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>supplier</title>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+
+<div class="container">
+    <table is="grid" :titles="titles" :rows="rows" @insert="insert" @update="update" @remove="remove"></table>
+    <div is="page" :total="total" :number="number" @change="change"></div>
+
+    <div is="modal">
+        <h4 class="modal-title" slot="modal-title" v-text="title" :class="titleClass"></h4>
+        <form>
+            <input type="hidden" v-model="row.id">
+            <div class="input-group">
+                <span class="input-group-addon">name</span>
+                <input type="text" class="form-control" v-model="row.name" placeholder="name">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">address</span>
+                <input type="text" class="form-control" v-model="row.address" placeholder="address">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">phone</span>
+                <input type="text" class="form-control" v-model="row.phone" placeholder="phone">
+            </div>
+        </form>
+
+        <div class="modal-footer" slot="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" @click="save">保存</button>
+        </div>
+    </div>
+</div>
+
+<script src="lib/vue.js"></script>
+<script src="lib/axios.js"></script>
+<script src="lib/jquery.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+<script src="lib/zsy/page.js"></script>
+<script src="lib/zsy/grid.js"></script>
+<script src="lib/zsy/modal.js"></script>
+
+<script src="js/supplier.js"></script>
+</body>
+</html>
