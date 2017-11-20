@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bai</title>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+    <style>
+        input.form-control[readonly] {
+            background: #fff;
+        }
+
+        input.form-control[type=number] {
+            background: #e9f9e2;
+        }
+
+        .container .input-group {
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="input-group">
+                <label class="form-control"><input type="radio" name="type" checked @click="selectCar">车位分期</label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="input-group">
+                <label class="form-control"><input type="radio" name="type" @click="selectHome">家装分期</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <span>期限</span>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li v-for="year of years">
+                    <a v-text="year + '年'" @click="selectYear(year)"></a>
+                </li>
+            </ul>
+        </div>
+        <input type="text" class="form-control" :value="year + '年'" title="期限" readonly>
+    </div>
+
+    <div class="input-group">
+        <div class="input-group-btn">
+            <button type="button" class="btn btn-default">
+                <span>年利率</span>
+            </button>
+        </div>
+        <input type="text" class="form-control" :value="setInterest" title="年利率" readonly>
+    </div>
+
+    <div class="input-group">
+        <div class="input-group-btn">
+            <button type="button" class="btn btn-default">
+                <span>月利率</span>
+            </button>
+        </div>
+        <input type="text" class="form-control" :value="setMonthInterest" title="月利率" readonly>
+    </div>
+
+    <div class="input-group">
+        <div class="input-group-btn">
+            <button type="button" class="btn btn-default">
+                <span>金额</span>
+            </button>
+        </div>
+        <input type="number" class="form-control bg-success" v-model="money" title="金额">
+    </div>
+
+    <div class="input-group">
+        <div class="input-group-btn">
+            <button type="button" class="btn btn-default">
+                <span>月本金</span>
+            </button>
+        </div>
+        <input type="text" class="form-control" :value="principal" title="月本金" readonly>
+    </div>
+
+    <div class="input-group">
+        <div class="input-group-btn">
+            <button type="button" class="btn btn-default">
+                <span>月利息</span>
+            </button>
+        </div>
+        <input type="text" class="form-control" :value="extra" title="月利息" readonly>
+    </div>
+
+    <div class="input-group">
+        <div class="input-group-btn">
+            <button type="button" class="btn btn-default">
+                <span>月还款</span>
+            </button>
+        </div>
+        <input type="text" class="form-control" :value="repay" title="月还款" readonly>
+    </div>
+
+</div>
+
+<script src="lib/vue.js"></script>
+<script src="lib/jquery.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="js/bai.js"></script>
+</body>
+</html>
