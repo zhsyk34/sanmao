@@ -1,5 +1,5 @@
-#customer .row {
-    margin: 15px 0;
+.container > .row {
+    margin: 25px 0;
 }
 
 input.form-control[readonly] {
@@ -14,4 +14,8 @@ input.form-control[readonly] {
 .table > tbody > tr {
     padding: 5px;
     height: 50px;
+}
+
+.input-group:not(:last-child) {
+    margin-bottom: 12px;
 }

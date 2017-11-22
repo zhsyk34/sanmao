@@ -26,12 +26,14 @@ public class Detail {
 
     @Column(nullable = false)
     private String name;//项目
-    @Column(nullable = false)
 
+    @Column(nullable = false)
     private String content;//内容
 
     private int width;
     private int height;
+
+    private int count;//数量
 
     private int money;//金额
 

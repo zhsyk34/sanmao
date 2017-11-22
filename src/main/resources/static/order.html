@@ -8,133 +8,181 @@
     <link rel="stylesheet" href="css/order.css">
 </head>
 <body>
-
 <div class="container">
-    <div id="customer">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="input-group">
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <span>客户编号</span>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li v-for="customer of customers">
-                                <a v-text="customer.no" @click="selectCustomer(customer)"></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <input type="text" class="form-control" placeholder="no" :value="customer.no" readonly>
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span>供应商</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li v-for="supplier of suppliers">
+                            <a v-text="supplier.name" @click="selectSupplier(supplier)"></a>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="input-group">
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <span>公司名称</span>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li v-for="customer of customers">
-                                <a v-text="customer.company" @click="selectCustomer(customer)"></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <input type="text" class="form-control" placeholder="company" :value="customer.company" readonly>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="input-group">
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-default">
-                            <span>下单日期</span>
-                        </button>
-                    </div>
-                    <input type="date" class="form-control" placeholder="date">
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="input-group">
-                    <div class="input-group-btn">
-                        <button id="name" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <span>联系人</span>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li v-for="customer of customers">
-                                <a v-text="customer.name" @click="selectCustomer(customer)"></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <input type="text" class="form-control" placeholder="name" :value="customer.name" readonly>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="input-group">
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-default">
-                            <span>联系地址</span>
-                        </button>
-                    </div>
-                    <input type="text" class="form-control" placeholder="address" :value="customer.address" readonly>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="input-group">
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-default">
-                            <span>联系电话</span>
-                        </button>
-                    </div>
-                    <input type="text" class="form-control" placeholder="phone" :value="customer.phone" readonly>
-                </div>
+                <input type="text" class="form-control" placeholder="" :value="supplier.name" readonly>
             </div>
         </div>
     </div>
 
-    <div id="detail">
-        <div class="row">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th rowspan="2">序号</th>
-                    <th rowspan="2">项目</th>
-                    <th rowspan="2">内容</th>
-                    <th colspan="3">规格</th>
-                    <th rowspan="2">单位</th>
-                    <th rowspan="2">单价</th>
-                    <th rowspan="2">数量</th>
-                    <th rowspan="2">金额</th>
-                    <th rowspan="2">备注</th>
-                </tr>
-                <tr>
-                    <th>长</th>
-                    <th>宽</th>
-                    <th>面积</th>
-                </tr>
-                </thead>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span>客户编号</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li v-for="customer of customers">
+                            <a v-text="customer.no" @click="selectCustomer(customer)"></a>
+                        </li>
+                    </ul>
+                </div>
+                <input type="text" class="form-control" placeholder="no" :value="customer.no" readonly>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span>公司名称</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li v-for="customer of customers">
+                            <a v-text="customer.company" @click="selectCustomer(customer)"></a>
+                        </li>
+                    </ul>
+                </div>
+                <input type="text" class="form-control" placeholder="company" :value="customer.company" readonly>
+            </div>
+        </div>
 
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="col-lg-4">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default">
+                        <span>下单日期</span>
+                    </button>
+                </div>
+                <input type="date" class="form-control" placeholder="date">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button id="name" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span>联系人</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li v-for="customer of customers">
+                            <a v-text="customer.name" @click="selectCustomer(customer)"></a>
+                        </li>
+                    </ul>
+                </div>
+                <input type="text" class="form-control" placeholder="name" :value="customer.name" readonly>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default">
+                        <span>联系地址</span>
+                    </button>
+                </div>
+                <input type="text" class="form-control" placeholder="address" :value="customer.address" readonly>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default">
+                        <span>联系电话</span>
+                    </button>
+                </div>
+                <input type="text" class="form-control" placeholder="phone" :value="customer.phone" readonly>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="row">
+            <span class="col-lg-offset-2 col-lg-4">公司地址: <span v-text="supplier.address"></span></span>
+            <span class="col-lg-offset-1 col-lg-4"> 电话: <span v-text="supplier.phone"></span></span>
+        </div>
+
+        <div is="modal">
+            <h4 class="modal-title" slot="modal-title" v-text="title" :class="titleClass"></h4>
+            <form>
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span>产品</span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li v-for="product of products">
+                                <a v-text="product.name" @click="selectProduct(product)"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <input type="text" class="form-control" placeholder="产品详情" :value="showProduct" readonly>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-addon">名称</span>
+                    <input type="text" class="form-control" placeholder="name">
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-addon">内容</span>
+                    <input type="text" class="form-control" placeholder="content">
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-addon">宽度</span>
+                    <input type="text" class="form-control" placeholder="width">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">高度</span>
+                    <input type="text" class="form-control" placeholder="height">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">面积</span>
+                    <input type="text" class="form-control" placeholder="area" readonly>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-addon">数量</span>
+                    <input type="text" class="form-control" placeholder="count">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">金额</span>
+                    <input type="text" class="form-control" placeholder="money" readonly>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-addon">备注</span>
+                    <input type="text" class="form-control" placeholder="remarks" readonly>
+                </div>
+                <!--<div class="input-group">-->
+                <!--<span class="input-group-addon">price</span>-->
+                <!--<input type="number" class="form-control" v-model="row.price" placeholder="price">-->
+                <!--</div>-->
+            </form>
+
+            <div class="modal-footer" slot="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" @click="save">保存</button>
         </div>
     </div>
 </div>
