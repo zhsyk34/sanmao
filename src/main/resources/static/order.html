@@ -112,77 +112,115 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th rowspan="2">序号</th>
+                <th rowspan="2">项目</th>
+                <th rowspan="2">内容</th>
+                <th colspan="3">规格</th>
+                <th rowspan="2">单位</th>
+                <th rowspan="2">单价</th>
+                <th rowspan="2">数量</th>
+                <th rowspan="2">金额</th>
+                <th rowspan="2">备注</th>
+                <th rowspan="2">
+                    <button class="btn btn-sm btn-success" @click="addDetail">新增</button>
+                </th>
+            </tr>
+            <tr>
+                <th>长</th>
+                <th>宽</th>
+                <th>面积</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr v-for="(detail, index) of details">
+                <td v-text="index + 1"></td>
+                <td v-text="detail.product.name"></td>
+                <td v-text="detail.content"></td>
+                <td v-text="detail.width"></td>
+                <td v-text="detail.height"></td>
+                <td v-text="detail.width * detail.height"></td>
+                <td v-text="detail.product.unit"></td>
+                <td v-text="detail.product.price"></td>
+                <td v-text="detail.count"></td>
+                <td v-text="detail.product.price * detail.count"></td>
+                <td v-text="detail.remarks"></td>
+                <td>
+                    <button class="btn btn-sm btn-danger" @click="delDetail">删除</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
     <div class="row">
+        <span class="col-lg-offset-2 col-lg-4">公司地址: <span v-text="supplier.address"></span></span>
+        <span class="col-lg-offset-1 col-lg-4"> 电话: <span v-text="supplier.phone"></span></span>
+    </div>
 
-        <div class="row">
-            <span class="col-lg-offset-2 col-lg-4">公司地址: <span v-text="supplier.address"></span></span>
-            <span class="col-lg-offset-1 col-lg-4"> 电话: <span v-text="supplier.phone"></span></span>
-        </div>
+    <div is="modal">
+        <h4 class="modal-title text-primary" slot="modal-title" v-text="title"></h4>
+        <form>
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span>产品</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li v-for="product of products">
+                            <a v-text="product.name" @click="selectProduct(product)"></a>
+                        </li>
+                    </ul>
+                </div>
+                <input type="text" class="form-control" placeholder="产品详情" :value="showProduct" readonly>
+            </div>
 
-        <div is="modal">
-            <h4 class="modal-title" slot="modal-title" v-text="title" :class="titleClass"></h4>
-            <form>
-                <div class="input-group">
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <span>产品</span>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li v-for="product of products">
-                                <a v-text="product.name" @click="selectProduct(product)"></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <input type="text" class="form-control" placeholder="产品详情" :value="showProduct" readonly>
-                </div>
+            <!--<div class="input-group">
+                <span class="input-group-addon">名称</span>
+                <input type="text" class="form-control" placeholder="name" v-model="detail.name">
+            </div>-->
 
-                <div class="input-group">
-                    <span class="input-group-addon">名称</span>
-                    <input type="text" class="form-control" placeholder="name">
-                </div>
+            <div class="input-group">
+                <span class="input-group-addon">内容</span>
+                <input type="text" class="form-control" placeholder="content" v-model="detail.content">
+            </div>
 
-                <div class="input-group">
-                    <span class="input-group-addon">内容</span>
-                    <input type="text" class="form-control" placeholder="content">
-                </div>
+            <div class="input-group">
+                <span class="input-group-addon">宽度</span>
+                <input type="number" class="form-control" placeholder="width" v-model="detail.width" @change="showArea">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">高度</span>
+                <input type="number" class="form-control" placeholder="height" v-model="detail.height" @change="showArea">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">面积</span>
+                <input type="number" class="form-control" placeholder="area" :value="showArea" readonly>
+            </div>
 
-                <div class="input-group">
-                    <span class="input-group-addon">宽度</span>
-                    <input type="text" class="form-control" placeholder="width">
-                </div>
-                <div class="input-group">
-                    <span class="input-group-addon">高度</span>
-                    <input type="text" class="form-control" placeholder="height">
-                </div>
-                <div class="input-group">
-                    <span class="input-group-addon">面积</span>
-                    <input type="text" class="form-control" placeholder="area" readonly>
-                </div>
+            <div class="input-group">
+                <span class="input-group-addon">数量</span>
+                <input type="number" class="form-control" placeholder="count" v-model="detail.count">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">金额</span>
+                <input type="number" class="form-control" placeholder="money" :value="detail.width * detail.height * detail.count" readonly>
+            </div>
 
-                <div class="input-group">
-                    <span class="input-group-addon">数量</span>
-                    <input type="text" class="form-control" placeholder="count">
-                </div>
-                <div class="input-group">
-                    <span class="input-group-addon">金额</span>
-                    <input type="text" class="form-control" placeholder="money" readonly>
-                </div>
+            <div class="input-group">
+                <span class="input-group-addon">备注</span>
+                <input type="text" class="form-control" placeholder="remarks" v-model="detail.remarks">
+            </div>
+        </form>
 
-                <div class="input-group">
-                    <span class="input-group-addon">备注</span>
-                    <input type="text" class="form-control" placeholder="remarks" readonly>
-                </div>
-                <!--<div class="input-group">-->
-                <!--<span class="input-group-addon">price</span>-->
-                <!--<input type="number" class="form-control" v-model="row.price" placeholder="price">-->
-                <!--</div>-->
-            </form>
-
-            <div class="modal-footer" slot="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" @click="save">保存</button>
+        <div class="modal-footer" slot="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" @click="save">保存</button>
         </div>
     </div>
 </div>

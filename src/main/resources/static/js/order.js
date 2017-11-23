@@ -2,18 +2,19 @@ const vue = new Vue({
     el: '.container',
     data: {
         url: "orders",
+        title: '编辑',
+        suppliers: [],
+        supplier: {},
         products: [],
-        detail: {product: {}},
-        title: '新增',
+        product: {},
         customers: [],
         customer: {},
-        suppliers: [],
-        supplier: {}
+        details: [{product: {}, width: 100}, {product: {}, height: 200}],
+        detail: {product: {}, width: 0, height: 0},
+        data: this.detail
     },
     mounted: function () {
         this.$nextTick(function () {
-            this.hide();
-            this.show();
             this.listSupplier();
             this.listProduct();
             this.listCustomer();
@@ -31,9 +32,9 @@ const vue = new Vue({
                 const r = resp.data;
                 if (r.code === 200) {
                     const data = r.data;
+                    r.data && (this.supplier = r.data.data);
                     if (data) {
                         this.suppliers = data.data;
-                        console.log('suppliers', this.suppliers);
                     }
                 } else {
                     alert("加载数据出错");
@@ -70,26 +71,45 @@ const vue = new Vue({
             this.supplier = supplier;
         },
         selectProduct: function (product) {
-            this.detail.product = product;
+            this.product = product;
         },
         selectCustomer: function (customer) {
             this.customer = customer;
         },
-        append: function () {
-            var template = $('#detail').clone();
-            $('tbody').append(template);
+        addDetail: function () {
+            this.detail = {};
+            this.product = {};
+            this.show();
+        },
+        delDetail: function (index) {
+            this.details.splice(index, 1);
         },
         save: function () {
-
+            console.log(this.detail);
+            if (this.product.id) {
+                this.detail.product = this.product;
+                this.details.push(this.detail);
+                this.hide();
+            } else {
+                alert('请完善数据');
+            }
         }
     },
     computed: {
         showProduct: function () {
-            const product = this.detail.product;
+            const product = this.product;
             return product.id ? product.name + ' ( ' + product.price + '元/' + product.unit + ' )' : '';
         },
-        titleClass: function () {
-            return {"text-success": !this.detail.product.id, "text-primary": !!this.detail.product.id};
+        showArea: function () {
+            console.log(this.detail);
+            const width = Number(this.detail.width);
+            const height = Number(this.detail.height);
+            console.log(width, height);
+            if (width && height) {
+                console.log('calc');
+                return width * height;
+            }
+            return '';
         }
     }
 });
